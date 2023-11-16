@@ -306,7 +306,7 @@ namespace Angora
         {
             if (byteCount < 0)
             {
-                BuffersThrowHelper.ThrowArgumentOutOfRangeException(BuffersThrowHelper.ExceptionArgument.length);
+                throw new ArgumentOutOfRangeException(nameof(byteCount), "byteCount is less than 0");
             }
 
             _consumedBytes += byteCount;
@@ -320,7 +320,7 @@ namespace Angora
                     break;
                 }
 
-                var remaining = (_currentSpan.Length - _index);
+                int remaining = (_currentSpan.Length - _index);
 
                 _index += remaining;
                 byteCount -= remaining;
@@ -330,7 +330,7 @@ namespace Angora
 
             if (byteCount > 0)
             {
-                BuffersThrowHelper.ThrowArgumentOutOfRangeException(BuffersThrowHelper.ExceptionArgument.length);
+                throw new ArgumentOutOfRangeException(nameof(byteCount), "byteCount is greater than 0 at the end of AdvanceNext");
             }
         }
     }
